@@ -15,4 +15,7 @@ public class EnigmaFrame extends JFrame {
     //JLabel for including other text references, such as “Inner” or “Middle”
     private JLabel inRotorLabel, outRotorLabel, midRotorLabel, positionLabel, inputLabel, outputLabel;
 
+    public EnigmaFrame() {
+        
+    }
 }
