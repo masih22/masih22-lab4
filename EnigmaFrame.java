@@ -55,5 +55,43 @@ public class EnigmaFrame extends JFrame {
         output = new JTextArea(5, 30);
         //add input JTextArea to center of input JPanel
         outputPanel.add(output, BorderLayout.CENTER);
+        // Add both panels to text panel
+        textArea.add(inPanel);
+        textArea.add(outPanel);
+        //encrypt button ActionListener
+        encryptButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //get rotor numbers
+                int id1 = innerRotor.getSelectedIndex() + 1;
+                int id2 = middleRotor.getSelectedIndex() + 1;
+                int id3 = outerRotor.getSelectedIndex() + 1;
+                String pos = positionField.getText();
+                //create enigma with specific settings
+                Enigma enigma = new Enigma(id1, id2, id3, pos);
+                //encrypt input and output the text
+                String result = enigma.encrypt(inputArea.getText());
+                outputArea.setText(result);
+            }
+        });
+        //decrypt button action listener 
+        decryptButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //get rotor numbers
+                int id1 = innerRotor.getSelectedIndex() + 1;
+                int id2 = middleRotor.getSelectedIndex() + 1;
+                int id3 = outerRotor.getSelectedIndex() + 1;
+                String pos = positionField.getText();
+                //create enigma with specific settings
+                Enigma enigma = new Enigma(id1, id2, id3, pos);
+                //decrypt input text and output the text
+                String result = enigma.decrypt(inputArea.getText());
+                outputArea.setText(result);
+            }
+        });
+        //add main panels to main frame
+        this.add(settingsPanel, BorderLayout.NORTH);
+        this.add(textPanel, BorderLayout.CENTER);
+        //pack the frame
+        this.pack();
     }
 }
