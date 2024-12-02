@@ -51,9 +51,11 @@ public class EnigmaFrame extends JFrame {
         settings.add(decrypt);
         
         //create a JPanel to hold input and output areas
-        JPanel textArea = new JPanel(new BorderLayout());
+        JPanel textArea = new JPanel(new BorderLayout(0, 10));
         //create input area
         JPanel inPanel = new JPanel(new BorderLayout());
+        //add order
+        inPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
         //add input label to "west" of inPanel
         inPanel.add(inputLabel, BorderLayout.WEST);
         // initialize input JTextArea
@@ -62,6 +64,8 @@ public class EnigmaFrame extends JFrame {
         inPanel.add(input, BorderLayout.CENTER);
         //create output area
         JPanel outPanel = new JPanel(new BorderLayout());
+        //edit border
+        outPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10)); 
         //add output label to "west" of outPanel
         outPanel.add(outputLabel, BorderLayout.WEST);
         //initialize output JTextArea
