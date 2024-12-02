@@ -37,6 +37,19 @@ public class EnigmaFrame extends JFrame {
         positionLabel = new JLabel("Initial Positions");
         inputLabel = new JLabel("Input");
         outputLabel = new JLabel("Output");
+        
+        //Add components to settings panel
+        settings.add(inRotorLabel);
+        settings.add(inRotor);
+        settings.add(midRotorLabel);
+        settings.add(midRotor);
+        settings.add(outRotorLabel);
+        settings.add(outRotor);
+        settings.add(positionLabel);
+        settings.add(initialPosition);
+        settings.add(encrypt);
+        settings.add(decrypt);
+        
         //create a JPanel to hold input and output areas
         JPanel textArea = new JPanel(new BorderLayout());
         //create input area
@@ -54,43 +67,43 @@ public class EnigmaFrame extends JFrame {
         //initialize output JTextArea
         output = new JTextArea(5, 30);
         //add input JTextArea to center of input JPanel
-        outputPanel.add(output, BorderLayout.CENTER);
+        outPanel.add(output, BorderLayout.CENTER);
         // Add both panels to text panel
-        textArea.add(inPanel);
-        textArea.add(outPanel);
+        textArea.add(inPanel, BorderLayout.NORTH);
+        textArea.add(outPanel, BorderLayout.CENTER);
         //encrypt button ActionListener
-        encryptButton.addActionListener(new ActionListener() {
+        encrypt.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //get rotor numbers
-                int id1 = innerRotor.getSelectedIndex() + 1;
-                int id2 = middleRotor.getSelectedIndex() + 1;
-                int id3 = outerRotor.getSelectedIndex() + 1;
-                String pos = positionField.getText();
+                int id1 = inRotor.getSelectedIndex() + 1;
+                int id2 = midRotor.getSelectedIndex() + 1;
+                int id3 = outRotor.getSelectedIndex() + 1;
+                String pos = initialPosition.getText();
                 //create enigma with specific settings
                 Enigma enigma = new Enigma(id1, id2, id3, pos);
                 //encrypt input and output the text
-                String result = enigma.encrypt(inputArea.getText());
-                outputArea.setText(result);
+                String result = enigma.encrypt(input.getText());
+                output.setText(result);
             }
         });
         //decrypt button action listener 
-        decryptButton.addActionListener(new ActionListener() {
+        decrypt.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //get rotor numbers
-                int id1 = innerRotor.getSelectedIndex() + 1;
-                int id2 = middleRotor.getSelectedIndex() + 1;
-                int id3 = outerRotor.getSelectedIndex() + 1;
-                String pos = positionField.getText();
+                int id1 = inRotor.getSelectedIndex() + 1;
+                int id2 = midRotor.getSelectedIndex() + 1;
+                int id3 = outRotor.getSelectedIndex() + 1;
+                String pos = initialPosition.getText();
                 //create enigma with specific settings
                 Enigma enigma = new Enigma(id1, id2, id3, pos);
                 //decrypt input text and output the text
-                String result = enigma.decrypt(inputArea.getText());
-                outputArea.setText(result);
+                String result = enigma.decrypt(input.getText());
+                output.setText(result);
             }
         });
         //add main panels to main frame
-        this.add(settingsPanel, BorderLayout.NORTH);
-        this.add(textPanel, BorderLayout.CENTER);
+        this.add(settings, BorderLayout.NORTH);
+        this.add(textArea, BorderLayout.CENTER);
         //pack the frame
         this.pack();
     }
