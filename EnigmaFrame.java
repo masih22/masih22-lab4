@@ -37,6 +37,23 @@ public class EnigmaFrame extends JFrame {
         positionLabel = new JLabel("Initial Positions");
         inputLabel = new JLabel("Input");
         outputLabel = new JLabel("Output");
-        
+        //create a JPanel to hold input and output areas
+        JPanel textArea = new JPanel(new BorderLayout());
+        //create input area
+        JPanel inPanel = new JPanel(new BorderLayout());
+        //add input label to "west" of inPanel
+        inPanel.add(inputLabel, BorderLayout.WEST);
+        // initialize input JTextArea
+        input = new JTextArea(5, 30);
+        //add input JTextArea to center of input JPanel
+        inPanel.add(input, BorderLayout.CENTER);
+        //create output area
+        JPanel outPanel = new JPanel(new BorderLayout());
+        //add output label to "west" of outPanel
+        outPanel.add(outputLabel, BorderLayout.WEST);
+        //initialize output JTextArea
+        output = new JTextArea(5, 30);
+        //add input JTextArea to center of input JPanel
+        outputPanel.add(output, BorderLayout.CENTER);
     }
 }
